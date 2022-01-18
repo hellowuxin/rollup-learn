@@ -1,16 +1,31 @@
 {
   "name": "rollup-learn",
   "version": "1.0.0",
+  "main": "dist/dove-design.cjs.js",
+  "module": "dist/dove-design.esm.js",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c rollup.config.lib.js",
+    "watch": "rollup -c rollup.config.app.js -w",
+    "dev": "npm-run-all --parallel start watch",
+    "start": "serve public -l 8080"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "npm-run-all": "^4.1.5",
     "rollup": "^2.64.0",
-    "rollup-plugin-json": "^4.0.0"
+    "rollup-plugin-terser": "^7.0.2",
+    "serve": "^13.0.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
