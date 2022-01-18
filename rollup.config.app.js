@@ -3,9 +3,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import replace from '@rollup/plugin-replace';
+import alias from '@rollup/plugin-alias';
+import path from 'path'
+import postcss from 'rollup-plugin-postcss'
 
-// `npm run build` -> `production` is true
-// `npm run dev` -> `production` is false
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
@@ -16,15 +17,26 @@ export default {
 		sourcemap: true
 	},
 	plugins: [
+    alias({
+      entries: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') },
+      ],
+    }),
     replace({
       preventAssignment: true,
       values: {
         'process.env.NODE_ENV': JSON.stringify('development')
       }
     }),
-    typescript(),
-		resolve(), // tells Rollup how to find date-fns in node_modules
-		commonjs(), // converts  to ES modules
+		resolve(),
+		commonjs(),
+    typescript({ tsconfig: './tsconfig.json' }),
+    postcss({
+      use: {
+        less: { javascriptEnabled: true }
+      },
+      extract: true
+    }),
 		production && terser() // minify, but only in production
 	]
 };
