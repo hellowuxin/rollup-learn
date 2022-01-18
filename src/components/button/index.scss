@@ -1,0 +1,14 @@
+@use '../../styles/variables.scss';
+
+.dove-btn {
+  border: none;
+}
+
+.dove-btn-green {
+  background-image: var(--dove-btn-green);
+
+  &:hover,
+  &:focus {
+    background-image: var(--dove-btn-green-hover);
+  }
+}
