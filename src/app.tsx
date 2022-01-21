@@ -1,4 +1,4 @@
-import DoveButton from './components/button'
+import DoveButton from '../components/button'
 
 const App = () => {
   return (
