@@ -1,11 +1,12 @@
 {
   "name": "rollup-learn",
   "version": "1.0.0",
-  "main": "dist/dove-design.cjs.js",
-  "module": "dist/dove-design.esm.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/types/index.d.ts",
   "description": "",
   "scripts": {
-    "build": "rollup -c rollup.config.lib.js",
+    "build": "rimraf es lib && rollup -c rollup.config.lib.js",
     "watch": "rollup -c rollup.config.app.js -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "serve public -l 8080"
@@ -23,18 +24,20 @@
     "@types/react-dom": "^17.0.11",
     "less": "^4.1.2",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.5",
     "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.64.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.48.0",
     "serve": "^13.0.2",
     "tslib": "^2.3.1",
-    "postcss": "^8.4.5",
-    "rollup-plugin-postcss": "^4.0.2",
     "typescript": "^4.5.4"
   },
   "files": [
-    "dist"
+    "es",
+    "lib"
   ],
   "dependencies": {
     "antd": "^4.18.3",
