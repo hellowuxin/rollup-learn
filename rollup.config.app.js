@@ -6,10 +6,11 @@ import replace from '@rollup/plugin-replace';
 import alias from '@rollup/plugin-alias';
 import path from 'path'
 import postcss from 'rollup-plugin-postcss'
+import { defineConfig } from 'rollup'
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default {
+export default defineConfig({
 	input: 'src/main.tsx',
 	output: {
 		file: 'public/bundle.js',
@@ -39,4 +40,4 @@ export default {
     }),
 		production && terser() // minify, but only in production
 	]
-};
+})

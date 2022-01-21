@@ -6,8 +6,9 @@ import alias from '@rollup/plugin-alias';
 import path from 'path'
 import postcss from 'rollup-plugin-postcss'
 import pkg from './package.json';
+import { defineConfig } from 'rollup'
 
-export default {
+export default defineConfig({
   input: 'src/components/index.tsx',
   external: ['react'],
   output: [
@@ -36,4 +37,4 @@ export default {
       extract: true
     })
 	]
-}
+})
